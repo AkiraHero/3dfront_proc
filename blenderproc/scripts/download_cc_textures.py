@@ -22,10 +22,10 @@ def cli():
     }
 
     cc_texture_dir = args.output_dir
-    if not os.path.exists(cc_texture_dir):
-        os.makedirs(cc_texture_dir)
-    else:
-        raise Exception("The folder already exists!")
+    # if not os.path.exists(cc_texture_dir):
+    #     os.makedirs(cc_texture_dir)
+    # else:
+    #     raise Exception("The folder already exists!")
 
     # download the csv file, which contains all the download links
     csv_url = "https://cc0textures.com/api/v1/downloads_csv"
@@ -48,6 +48,8 @@ def cli():
 
     # download each asset and create a folder for it (unpacking + deleting the zip included)
     for index, (asset, link) in enumerate(data.items()):
+        if index < 1231:
+            continue
         do_not_use = False
         for exclude_element in excluding_list:
             if asset.lower().startswith(exclude_element.lower()):
